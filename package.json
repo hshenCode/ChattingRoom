@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack",
-    "postinstall": "node server/server.js"
+//    "postinstall": "",
+    "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
+    "heroku-postbuild": "node server/server.js"
   },
   "keywords": [],
   "author": "",
