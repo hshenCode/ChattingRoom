@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack",
-    "postinstall": "webpack"
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
