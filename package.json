@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack",
-    "postinstall": "nodemon server/server.js"
+    "postinstall": "node server/server.js"
   },
   "keywords": [],
   "author": "",
