@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack"
+    "dev": "webpack",
+    "postinstall": "nodemon server/server.js"
   },
   "keywords": [],
   "author": "",
