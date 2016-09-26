@@ -4,9 +4,7 @@
   "description": "",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack",
-    "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
-    "heroku-postbuild": "node server/server.js"
+    "dev": "webpack"
   },
   "keywords": [],
   "author": "",
