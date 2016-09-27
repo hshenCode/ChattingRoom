@@ -8,15 +8,15 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from 'js/reducers'
-
-import ChatContainer from 'js/containers/ChatContainer';
-
+import Routes from 'js/routes'
 
 let store = createStore(reducer)
 
+import 'css/main.less'
+
 render(
     <Provider store={store}>
-        <ChatContainer />
+        {Routes}
     </Provider>,
     $('.main')[0]
 );

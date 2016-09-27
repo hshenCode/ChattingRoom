@@ -70,21 +70,16 @@ exports.copy = function () {
 }
 
 exports.less = function () {
-    var ExtractTextPlugin = require("extract-text-webpack-plugin");
-    var extractLESS = new ExtractTextPlugin('../css/[name].css',{allChunks: true});
-
     return {
         module: {
             loaders: [
                 {
                     test: /\.less$/,
                     exclude: /node_modules/,
-                    loader:  extractLESS.extract("style-loader", "css-loader!less-loader") }
+                    loader: "style!css!less"
+                }
             ]
-        },
-        plugins: [
-            extractLESS
-        ]
+        }
     };
 };
 

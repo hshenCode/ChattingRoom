@@ -22,22 +22,25 @@ export default class Chat extends Component {
     }
 
     sendMessage(newMessage) {
-        const { socket ,dispatch } = this.props;
-        if (newMessage.text.length !== 0) {
+        const { socket ,dispatch, userName } = this.props;
+        if (newMessage.length !== 0) {
             dispatch(actions.sendMessage(newMessage));
-            socket.emit('newMessage', newMessage);
+            socket.emit('newMessage', {userName: userName, text: newMessage});
         }
     }
 
     render() {
         const { messages} = this.props;
         return (
-            <div className="main">
-                <ul style={{wordWrap: 'break-word', margin: '0', overflowY: 'auto', padding: '0', paddingBottom: '1em', flexGrow: '1', order: '1'}}>
-                {messages.map(message =>
-                    <MessageListItem message={message} key={message.text}/>
-                )}
-                </ul><MessageComposer sendMessage={this.sendMessage.bind(this)} />
+            <div className="chat">
+                <div className="chat-area">
+                    <ul class="messages">
+                        {messages.map(message =>
+                            <MessageListItem message={message} key={message.text}/>
+                        )}
+                    </ul>
+                </div>
+                <MessageComposer sendMessage={this.sendMessage.bind(this)} />
             </div>
         );
     }

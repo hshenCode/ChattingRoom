@@ -3,35 +3,25 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-
-import * as actions from '../actions/actions';
-
-import Chat from 'js/components/Chat';
 import { connect } from 'react-redux';
-
-var io = require('socket.io-client')
-var socket = io.connect();
-
+import Chat from 'js/components/Chat';
 
 class ChatContainer extends Component {
-
-    componentWillMount() {
-
-    }
-
     render() {
         return (
-            <Chat {...this.props} socket={socket} />
+            <Chat {...this.props} />
         );
     }
 }
 
-function mapStateToProps(state) {
-    // state.messages = [{'user': 'user1',
-    //                     'text': 'text1'}]
-    console.log(state)
+function injectProps(state) {
+    var io = require('socket.io-client')
+    var socket = io.connect();
     return {
-        messages: state.messages.messages
+        socket: socket,
+        messages: state.messages.messages,
+        userName: state.user.userName
     }
 }
-export default connect(mapStateToProps)(ChatContainer)
+
+export default connect(injectProps)(ChatContainer)

@@ -16,3 +16,10 @@ export function receiveMessage(message) {
         message
     }
 }
+
+export function signIn(userName) {
+    return {
+        type: types.SIGN_IN,
+        userName
+    }
+}

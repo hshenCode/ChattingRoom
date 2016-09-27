@@ -11,16 +11,10 @@ export default class MessageComposer extends Component {
     }
 
     handleSubmit(event) {
-        console.log(event.which);
-
         if (event.which === 13) {
             event.preventDefault();
             const text = event.target.value.trim();
-            var newMessage = {
-                text: text,
-                user: '',
-            };
-            this.props.sendMessage(newMessage);
+            this.props.sendMessage(text);
         }
     }
 

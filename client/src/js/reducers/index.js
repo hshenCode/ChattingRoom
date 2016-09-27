@@ -4,9 +4,11 @@
 
 import { combineReducers } from 'redux'
 import messages from 'js/reducers/MessageReducer'
+import signIn from 'js/reducers/SignInReducers'
 
 const reducer = combineReducers({
-    messages
+    messages,
+    user: signIn
 })
 
 export default reducer

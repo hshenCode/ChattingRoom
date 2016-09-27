@@ -6,17 +6,15 @@ import React from 'react'
 import * as types from 'js/constants/ActionTypes'
 
 const initialState = {
-    messages: [],
+    userName: ''
 };
 
-export default function messages(state = initialState, action) {
+export default function signIn(state = initialState, action) {
     switch (action.type) {
-        case types.RECEIVE_MESSAGE:
+        case types.SIGN_IN:
             return {...state,
-                messages: [...state.messages, action.message]
+                    userName: action.userName
             }
-        case types.SEND_MESSAGE:
-            return state;
         default:
             return state;
     }
