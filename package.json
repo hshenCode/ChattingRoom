@@ -27,7 +27,9 @@
     "redux-auth": "0.0.5-beta5",
     "redux-thunk": "^2.1.0",
     "socket.io": "^1.4.8",
-    "socket.io-client": "^1.4.8"
+    "socket.io-client": "^1.4.8",
+    "webpack": "^1.13.1",
+    "webpack-merge": "^0.14.1"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
@@ -45,7 +47,5 @@
     "less-loader": "^2.2.3",
     "redux-devtools": "^3.3.1",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.1",
-    "webpack-merge": "^0.14.1"
   }
 }
