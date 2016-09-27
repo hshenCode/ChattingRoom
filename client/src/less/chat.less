@@ -1,11 +1,17 @@
+.chat {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
 /* Font */
 
 .messages {
   font-size: 150%;
 }
 
-.inputMessage {
-  font-size: 100%;
+.input-message {
+  font-size: 200%;
 }
 
 .log {
@@ -16,6 +22,11 @@
 }
 
 /* Messages */
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
 
 .chat-area {
   height: 100%;
@@ -33,7 +44,7 @@
   color: gray;
 }
 
-.username {
+.user-name {
   font-weight: 700;
   overflow: hidden;
   padding-right: 15px;
@@ -45,7 +56,7 @@
 .input-message {
   border: 10px solid #000;
   bottom: 0;
-  height: 60px;
+  height: 80px;
   left: 0;
   outline: none;
   padding-left: 10px;

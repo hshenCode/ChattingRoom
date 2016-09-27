@@ -7,6 +7,8 @@ import MessageComposer from 'js/components/MessageComposer';
 import MessageListItem from 'js/components/MessageListItem';
 import * as actions from 'js/actions/actions';
 
+import 'css/chat.less'
+
 export default class Chat extends Component {
 
     constructor(props, context) {
@@ -34,7 +36,7 @@ export default class Chat extends Component {
         return (
             <div className="chat">
                 <div className="chat-area">
-                    <ul class="messages">
+                    <ul className="messages">
                         {messages.map(message =>
                             <MessageListItem message={message} key={message.text}/>
                         )}
