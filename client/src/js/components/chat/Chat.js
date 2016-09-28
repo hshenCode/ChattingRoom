@@ -3,9 +3,8 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import MessageComposer from 'js/components/MessageComposer';
-import MessageListItem from 'js/components/MessageListItem';
-import * as actions from 'js/actions/actions';
+import MessageComposer from 'js/components/chat/MessageComposer';
+import MessageListItem from 'js/components/chat/MessageListItem';
 
 import 'css/chat.less'
 
@@ -13,21 +12,22 @@ export default class Chat extends Component {
 
     constructor(props, context) {
         super(props, context);
+        const io = require('socket.io-client')
+        this.socket = io.connect();
     }
 
     componentDidMount() {
-        const { socket, dispatch } = this.props;
-        socket.on('newMessage',function (msg) {
-            console.log(msg)
-            dispatch(actions.receiveMessage(msg))
+        const { receiveMessage } = this.props;
+        this.socket.on('newMessage',function (msg) {
+            receiveMessage(msg);
         });
     }
 
     sendMessage(newMessage) {
-        const { socket ,dispatch, userName } = this.props;
+        const { sendMessage, userName } = this.props;
         if (newMessage.length !== 0) {
-            dispatch(actions.sendMessage(newMessage));
-            socket.emit('newMessage', {userName: userName, text: newMessage});
+            sendMessage(newMessage);
+            this.socket.emit('newMessage', {userName: userName, text: newMessage});
         }
     }
 

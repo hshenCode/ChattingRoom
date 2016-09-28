@@ -13,14 +13,21 @@ export default class MessageComposer extends Component {
     handleSubmit(event) {
         if (event.which === 13) {
             event.preventDefault();
-            const text = event.target.value.trim();
-            this.props.sendMessage(text);
+            const text = this.refs.input.value.trim();
+            if (text.length > 0) {
+                this.props.sendMessage(text);
+                this.refs.input.value = '';
+            }
         }
     }
 
     render() {
         return (
-            <input className="input-message" placeholder="Type here..." autoFocus="true" onKeyDown={this.handleSubmit.bind(this)}/>
+            <input className="input-message"
+                   placeholder="Type here..."
+                   autoFocus="true"
+                   ref="input"
+                   onKeyDown={this.handleSubmit.bind(this)}/>
         );
     }
 }

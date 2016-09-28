@@ -4,7 +4,11 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Chat from 'js/components/Chat';
+import {bindActionCreators} from 'redux';
+
+import Chat from 'js/components/chat/Chat';
+import * as actions from 'js/actions/actions';
+
 
 class ChatContainer extends Component {
     render() {
@@ -14,14 +18,18 @@ class ChatContainer extends Component {
     }
 }
 
-function injectProps(state) {
-    var io = require('socket.io-client')
-    var socket = io.connect();
+const mapStateToProps = (state, ownProps) => {
     return {
-        socket: socket,
         messages: state.messages.messages,
         userName: state.user.userName
     }
 }
 
-export default connect(injectProps)(ChatContainer)
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators({
+        receiveMessage: actions.receiveMessage,
+        sendMessage: actions.sendMessage
+    },dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer)
