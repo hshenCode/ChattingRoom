@@ -7,6 +7,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import {  browserHistory } from 'react-router';
+import Singleton from 'js/socket'
 
 import 'css/signIn.less'
 
@@ -14,13 +15,14 @@ export default class SignIn extends Component {
 
     constructor(props, context) {
         super(props, context);
+        this.socket = Singleton.getInstance();
     }
 
     handleSignIn(event) {
         if (event.which === 13) {
             event.preventDefault();
             const userName = event.target.value.trim();
-            this.props.signIn(userName);
+            this.socket.emit('signIn', userName);
             browserHistory.push('/chat');
         }
     }
@@ -40,5 +42,4 @@ export default class SignIn extends Component {
             </div>
         );
     }
-
 }
