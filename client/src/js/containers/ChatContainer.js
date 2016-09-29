@@ -20,15 +20,17 @@ class ChatContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        messages: state.messages.messages,
-        userName: state.user.userName
+        messages: state.messages,
+        // userName: state.user.userName
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return bindActionCreators({
         receiveMessage: actions.receiveMessage,
-        sendMessage: actions.sendMessage
+        sendMessage: actions.sendMessage,
+        userJoined: actions.userJoined,
+        userLeft: actions.userLeft
     },dispatch);
 }
 
