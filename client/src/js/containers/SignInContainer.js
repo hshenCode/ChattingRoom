@@ -17,10 +17,4 @@ class SignInContainer extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({
-        signIn: actions.signIn
-    },dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(SignInContainer)
+export default connect()(SignInContainer)

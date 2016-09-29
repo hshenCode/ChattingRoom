@@ -25,12 +25,41 @@ app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
 app.use('/static', express.static('./client/build'));
 
+var userNumber = 0;
+
 io.sockets.on('connection', function (socket) {
-    socket.broadcast.emit('newlogin',{ new: 'signed!' })
+    var signedIn = false;
 
-    socket.on('newMessage', function (data) {
-        io.sockets.emit('newMessage',data);
+    socket.on('newMessage', function (text) {
+        io.sockets.emit('newMessage',{
+            userName: socket.userName,
+            text: text
+        })
+    });
 
+    socket.on('signIn', function (userName) {
+        if (signedIn) return;
+
+        // we store the username in the socket session for this client
+        socket.userName = userName;
+        ++userNumber;
+        signedIn = true;
+
+        io.sockets.emit('userJoined', {
+            userName: userName,
+            userNumber: userNumber
+        });
+    });
+
+    socket.on('disconnect', function () {
+        if (signedIn) {
+            --userNumber;
+
+            io.sockets.emit('userLeft', {
+                userName: socket.userName,
+                userNumber: userNumber
+            });
+        }
     });
 
 });

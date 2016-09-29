@@ -4,11 +4,11 @@
 
 import { combineReducers } from 'redux'
 import messages from 'js/reducers/MessageReducer'
-import signIn from 'js/reducers/SignInReducers'
 
-const reducer = combineReducers({
-    messages,
-    user: signIn
-})
+// const reducer = combineReducers({
+//     messages
+// })
+
+const reducer = messages
 
 export default reducer

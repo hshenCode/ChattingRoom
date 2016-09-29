@@ -17,9 +17,16 @@ export function receiveMessage(message) {
     }
 }
 
-export function signIn(userName) {
+export function userJoined(data) {
     return {
-        type: types.SIGN_IN,
-        userName
+        type: types.USER_JOINED,
+        data
+    }
+}
+
+export function userLeft(data) {
+    return {
+        type: types.USER_LEFT,
+        data
     }
 }

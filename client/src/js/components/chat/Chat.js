@@ -3,8 +3,9 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import MessageComposer from 'js/components/chat/MessageComposer';
-import MessageListItem from 'js/components/chat/MessageListItem';
+import MessageInput from 'js/components/chat/MessageInput';
+import MessageItem from 'js/components/chat/MessageItem';
+import Singleton from 'js/socket'
 
 import 'css/chat.less'
 
@@ -12,14 +13,21 @@ export default class Chat extends Component {
 
     constructor(props, context) {
         super(props, context);
-        const io = require('socket.io-client')
-        this.socket = io.connect();
+        this.socket = Singleton.getInstance();
     }
 
-    componentDidMount() {
-        const { receiveMessage } = this.props;
+    componentWillMount() {
+        const { receiveMessage, userJoined, userLeft } = this.props;
         this.socket.on('newMessage',function (msg) {
             receiveMessage(msg);
+        });
+        this.socket.on('userJoined',function (data) {
+            console.log(data);
+            userJoined(data);
+        });
+        this.socket.on('userLeft',function (data) {
+            console.log(data);
+            userLeft(data);
         });
     }
 
@@ -27,7 +35,7 @@ export default class Chat extends Component {
         const { sendMessage, userName } = this.props;
         if (newMessage.length !== 0) {
             sendMessage(newMessage);
-            this.socket.emit('newMessage', {userName: userName, text: newMessage});
+            this.socket.emit('newMessage', newMessage);
         }
     }
 
@@ -37,12 +45,12 @@ export default class Chat extends Component {
             <div className="chat">
                 <div className="chat-area">
                     <ul className="messages">
-                        {messages.map(message =>
-                            <MessageListItem message={message} key={message.text}/>
+                        {messages.map( (message, index) =>
+                            <MessageItem message={message} key={index}/>
                         )}
                     </ul>
                 </div>
-                <MessageComposer sendMessage={this.sendMessage.bind(this)} />
+                <MessageInput sendMessage={this.sendMessage.bind(this)} />
             </div>
         );
     }
