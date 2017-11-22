@@ -4,6 +4,7 @@
 
 [view it on my personal server](http://hshen.pw:3000)
 
+or the link below if my server doesn't work (๑•́₃ •̀๑) :
 [view it on heroku](https://murmuring-brook-22426.herokuapp.com)
 
 
