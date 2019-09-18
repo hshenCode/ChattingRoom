@@ -100,3 +100,16 @@ exports.babel = function () {
         }
     };
 };
+module: {
+            loaders: [
+                {
+                    test2: /\.less2$/,
+                    exclude: /node_modules/,
+                    loader: "style!css!less"
+    
+                }
+            ]
+        }
+    };
+};
+
